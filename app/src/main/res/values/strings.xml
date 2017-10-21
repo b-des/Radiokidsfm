@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Radiokidsfm</string>
+    <string name="action_settings">Settings</string>
+    <string name="page_about">О приложении</string>
+    <string name="page_contacts">Контакты</string>
+    <string name="page_news">Новости</string>
+    <string name="page_login">Авторизация</string>
+
+    <string name="drawer_item_login">Войти в аккаунт</string>
+    <string name="drawer_item_logout">Выйти из аккаунта</string>
+    <string name="drawer_item_news">Новости</string>
+    <string name="drawer_item_call">Позвонить в эфир</string>
+    <string name="drawer_item_enable_chat">Включить чат</string>
+    <string name="drawer_item_disable_chat">Отключить чат</string>
+    <string name="drawer_item_go_to_site">Перейти на сайт</string>
+    <string name="drawer_item_about">О приложении</string>
+    <string name="drawer_item_contacts">Контакты</string>
+
+    <string name="text_loading_video">Загружается стрим</string>
+    <string name="text_loading">Загрузка</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_canceled">Отменено</string>
+    <string name="text_close">Закрыть</string>
+    <string name="text_error">Ошибка</string>
+    <string name="text_message">Сообщение</string>
+    <string name="text_message_send">Сообщение отправлено</string>
+    <string name="text_today">Сегодня, </string>
+    <string name="text_yesterday">Вчера, </string>
+    <string name="text_second">секунд </string>
+    <string name="text_error_authorize">Невозможно авторизироватся</string>
+    <string name="text_process_authorize">Авторизация…</string>
+    <string name="text_process_create_account">Создание аккаунта…</string>
+    <string name="text_error_network">Ошибка сети. Проверьте подключение к интернету!</string>
+    <string name="text_wrong_pass">Неверный логин или пароль</string>
+    <string name="text_authorization_successful">Вы успешно авторизировались!</string>
+    <string name="text_login">Логин</string>
+    <string name="text_name">Имя</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Пароль</string>
+    <string name="text_change_password">Изменить пароль</string>
+    <string name="text_title_change_password">Смена пароля</string>
+    <string name="text_old_password">Старый пароль</string>
+    <string name="text_new_password">Новый пароль</string>
+    <string name="text_confirm_password">Подтвердите пароль</string>
+    <string name="text_enter_old_password">Введите старый пароль</string>
+    <string name="text_passwords_not_equal">Пароли не совпадают</string>
+    <string name="text_passwords_are_empty">Введите новый пароль</string>
+    <string name="text_passwords_successful_changed">Пароль успешно изменен</string>
+    <string name="text_e_email">Электронная почта</string>
+    <string name="text_nick">Ник</string>
+    <string name="text_first_name">Имя</string>
+    <string name="text_last_name">Фамилия</string>
+    <string name="text_sign_in">Вход</string>
+    <string name="text_sign_in_for_write">Войди в аккаунт, чтобы писать сообщения</string>
+    <string name="text_registration">Регистрация</string>
+    <string name="text_create_account">Создать аккаунт</string>
+    <string name="text_login_with_social">Войти через соц.сети</string>
+    <string name="text_enter_login">Введите логин от 3-х символов</string>
+    <string name="text_enter_correct_password">Введите корректный пароль</string>
+    <string name="text_enter_correct_email">Введите корректный email</string>
+    <string name="text_fill_in_field">Заполните это поле</string>
+    <string name="text_user_exist">Пользователь уже существует</string>
+    <string name="text_create_account_error">Ошибка при регистрации. Попробуйте ещё раз.</string>
+    <string name="text_skype_dismiss">У Вас отсутствует Skype</string>
+    <string name="text_chat_is_disabled">Чат отключен</string>
+    <string name="text_chat_is_enabled">Чат включен</string>
+    <string name="text_chat_in_fullscreen_mode">Чат в полноэкранном режиме</string>
+    <string name="text_kidsfm_social_links">Соц. сети RADIOKIDSFM</string>
+    <string name="text_youtube">YouTube</string>
+    <string name="text_instagram">Instagram</string>
+    <string name="text_vk">ВКонтакте</string>
+    <string name="text_ok">Одноклассники</string>
+
+    <string name="link_youtube">https://www.youtube.com/channel/UCYhyHb9tmpYwzeYFSu3Ty0Q</string>
+    <string name="link_instagram">https://www.instagram.com/radiokidsfm/</string>
+    <string name="link_vk">http://www.vk.com/radiokidsfm</string>
+    <string name="link_ok">https://ok.ru/radiokidsfm</string>
+    <string name="link_site">http://radiokids.fm/</string>
+
+    <string name="settings_skype_name">radiokidsfm</string>
+    <string name="settings_stream_url">http://s2.myowntv.org/hls/radiokidsfm.m3u8</string>
+
+
+    <string name="about_text"><![CDATA[
+    RADIOKIDSFM - это международное детское телевидение, где эфир ведут сами дети и подростки.
+    Это место, где слушатели не только слушают музыку, но и общаются с ведущими в прямом эфире.
+<p>Смотрите прямой эфир, общайтесь в чате и звоните в прямой эфир.</p>
+<p></p>
+<p></p>
+<p style="float:right;text-align:right;">Разработка <a href="www.app154.ru">www.app154.ru</a></p>
+]]></string>
+
+    <string name="contacts_text"><![CDATA[
+<p>Адрес: г. Москва, Ломоносовский проспект, 43/2</p>
+<p>Тел: +7 (495) 118-29-80</p>
+<p>E-mail: info@radiokids.fm</p>
+<p><a href="www.radiokids.fm">www.radiokids.fm</a></p>
+]]></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

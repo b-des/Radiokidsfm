@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "fm.radiokids"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+            main.res.srcDirs += 'src/main/res/emoticons'
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile(name: 'ulogin-sdk-v1.1', ext: 'aar')
+    compile('com.mikepenz.materialdrawer:library:0.9.5@aar') {
+        transitive = true
+    }
+    //android
+
+    //custom
+    // jsoup HTML parser library @ https://jsoup.org/
+    //https://github.com/bumptech/glide
+    //https://github.com/BROUDING/SimpleDialog?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=5978
+    //https://android-arsenal.com/details/1/3805
+    //https://github.com/thunder413/DateTimeUtils?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=5897
+    //https://github.com/JakeWharton/butterknife
+
+
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:support-v4:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:design:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'pub.devrel:easypermissions:1.0.1'
+    compile 'com.github.karanchuri:PermissionManager:0.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'org.jsoup:jsoup:1.10.3'
+    compile 'com.github.bumptech.glide:glide:4.2.0'
+    compile 'com.brouding:android-simple-dialog:0.3.0'
+    compile 'com.github.mukeshsolanki:Android-Shared-Preferences-TinyDB-:1.0.3'
+    compile 'com.github.thunder413:DateTimeUtils:1.0'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'io.github.rockerhieu:emojiconize:1.0.0'
+    //compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
+}

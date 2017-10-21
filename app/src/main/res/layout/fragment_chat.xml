@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fm.radiokids.fragments.ChatFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ListView
+            android:id="@+id/chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:divider="@android:color/transparent"
+            android:elevation="0dp" />
+
+        <Button
+            android:id="@+id/btn_login_chat"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/ripple"
+            android:clickable="true"
+            android:text="@string/text_sign_in_for_write"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/message_input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@drawable/line_top"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:weightSum="1">
+
+                <ImageButton
+                    android:id="@+id/btn_call"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/zero"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/grey"
+                    app:srcCompat="@drawable/logo" />
+
+                <EditText
+                    android:id="@+id/message_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/text_message"
+                    android:inputType="text"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/aluminum"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/btn_smiley"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/zero"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_smile_logo" />
+
+                <ImageButton
+                    android:id="@+id/btn_send"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/zero"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_send_inactive" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:theme="@style/InputLayout">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/message_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/text_message"
+                    android:paddingLeft="55dp"
+                    android:paddingRight="55dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="12sp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/send"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_send_inactive" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

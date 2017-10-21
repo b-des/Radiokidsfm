@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                     onLoginSuccess(user);
                 }else{
                     progressDialog.dismiss();
+                    _loginButton.setEnabled(true);
                     Toast.makeText(LoginActivity.this, getString(R.string.text_wrong_pass), Toast.LENGTH_LONG).show();
                 }
             }

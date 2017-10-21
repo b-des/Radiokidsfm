@@ -115,8 +115,8 @@ public class LandChatFragment extends Fragment {
             }
         });
 
-        setUpChatUpdate();
-        hideChat();
+        //setUpChatUpdate();
+        //hideChat();
 
         btnSwitchChat = view.findViewById(R.id.btn_switch_chat);
         if (activity.preferences.getBoolean("chatIsEnabled")) {

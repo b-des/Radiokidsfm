@@ -291,12 +291,27 @@ public class LandChatFragment extends Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setUpChatUpdate();
+            hideChat();
         }
-    }
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if(myTimer != null){
+                myTimer.cancel();
+                myTimer.purge();
+                myTimer = null;
+            }
+
+            if(thread != null){
+                thread.interrupt();
+                thread = null;
+            }
+        }
+
+        }
 
     @Override
     public void onAttach(Context context) {

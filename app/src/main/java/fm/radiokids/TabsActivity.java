@@ -87,7 +87,10 @@ NewsFragment.OnFragmentInteractionListener,
         // Create new fragment and transaction
         //fragment for landscape chat
         landChatFragment = new LandChatFragment();
-
+        landChatTransaction = getSupportFragmentManager().beginTransaction();
+        landChatTransaction.add(R.id.chat_landscape, landChatFragment, "landscape-chat");
+        //landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        landChatTransaction.commit();
 
 
         chat = findViewById(R.id.chat_landscape);
@@ -146,7 +149,10 @@ NewsFragment.OnFragmentInteractionListener,
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        landChatTransaction = getSupportFragmentManager().beginTransaction();
+
+/*
+        Fragment lndChatF = getSupportFragmentManager().findFragmentByTag("landscape-chat");
+*/
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -170,9 +176,11 @@ NewsFragment.OnFragmentInteractionListener,
             //show button shat switch
            // btnSwitchChat.setVisibility(View.VISIBLE);
 
-            landChatTransaction.add(R.id.chat_landscape, landChatFragment,"landscape-chat");
-            landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-
+           /* if(lndChatF == null){
+                landChatTransaction.add(R.id.chat_landscape, landChatFragment, "landscape-chat");
+                landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                landChatTransaction.commit();
+            }*/
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
 
@@ -187,16 +195,20 @@ NewsFragment.OnFragmentInteractionListener,
 
             //hide chat
             //chat.setVisibility(View.INVISIBLE);
-            //chat.setVisibility(View.GONE);
+            chat.setVisibility(View.GONE);
 
 
             //remove landscape chat fragment
             //landChatTransaction.detach(landChatFragment);
-            landChatTransaction.remove(landChatFragment);
-            landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+           /* if(lndChatF instanceof LandChatFragment){
+                landChatTransaction.remove(landChatFragment);
+                landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                landChatTransaction.commit();
+            }*/
+
         }
 
-        landChatTransaction.commit();
+
     }
 
 

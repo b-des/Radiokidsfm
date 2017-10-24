@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RadioKids.iml" filepath="$PROJECT_DIR$/RadioKids.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rdiokidsfm.iml" filepath="$PROJECT_DIR$/Rdiokidsfm.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

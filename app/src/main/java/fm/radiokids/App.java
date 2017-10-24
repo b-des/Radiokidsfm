@@ -53,9 +53,10 @@ public class App extends Application {
         else */if(DateTimeUtils.isToday(date)){
             fd = DateTimeUtils.formatWithPattern(date," HH:mm");
         }
-        else if(DateTimeUtils.isYesterday(date)){
+       /* else if(DateTimeUtils.isYesterday(date)){
             fd = context.getResources().getString(R.string.text_yesterday)+DateTimeUtils.formatWithPattern(date," HH:mm");
-        }else{
+        }*/
+        else{
             fd =  DateTimeUtils.formatWithPattern(date,"dd/MM HH:mm");
         }
             return  fd;

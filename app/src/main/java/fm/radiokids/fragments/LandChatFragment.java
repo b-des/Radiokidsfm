@@ -2,6 +2,7 @@ package fm.radiokids.fragments;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -90,6 +91,7 @@ public class LandChatFragment extends Fragment {
         //setup chat messages list
         chatList = view.findViewById(R.id.land_chat_list);
 
+
         dataModels = new ArrayList<>();
         adapter = new ChatAdapter(dataModels, getActivity().getApplicationContext());
         chatList.setAdapter(adapter);
@@ -98,22 +100,7 @@ public class LandChatFragment extends Fragment {
         //chatList.setOnScrollListener(onScrollChatListener());
         // chatList.setOnTouchListener(onTouchChatListener());
         //load last messages of the chat
-        App.getApi().getMessages(0).enqueue(new Callback<List<ChatModel>>() {
-            @Override
-            public void onResponse(Call<List<ChatModel>> call, Response<List<ChatModel>> response) {
-                try {
-                    dataModels.addAll(response.body());
-                    adapter.notifyDataSetChanged();
-                    chatList.setSelection(adapter.getCount() - 1);
-
-                } catch (Exception ignored) {
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ChatModel>> call, Throwable t) {
-            }
-        });
+       loadLastMessages();
 
         //setUpChatUpdate();
         //hideChat();
@@ -129,6 +116,24 @@ public class LandChatFragment extends Fragment {
         btnSwitchChat.setOnClickListener(onSwitchChatButtonListener());
 
         return view;
+    }
+
+    private void loadLastMessages() {
+        App.getApi().getMessages(0).enqueue(new Callback<List<ChatModel>>() {
+            @Override
+            public void onResponse(Call<List<ChatModel>> call, Response<List<ChatModel>> response) {
+                try {
+                    dataModels.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                    chatList.setSelection(dataModels.size() - 1);
+                } catch (Exception ignored) {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ChatModel>> call, Throwable t) {
+            }
+        });
     }
 
 
@@ -163,10 +168,10 @@ public class LandChatFragment extends Fragment {
                     chatList.setVisibility(View.VISIBLE);
                     btnSwitchChat.setImageResource(R.drawable.ic_visibility_white_24dp);
                     activity.preferences.putBoolean("chatIsEnabled", true);
+                    hideChat();
 
                     //if chat is visible
                     //send command to hide after 5 seconds
-                    hideChat();
                     //chat.setVisibility(View.INVISIBLE);
                     //chatIsVisible = false;
                 }
@@ -291,11 +296,28 @@ public class LandChatFragment extends Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            loadLastMessages();
+            setUpChatUpdate();
+            chatList.setVisibility(View.VISIBLE);
+            hideChat();
         }
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if(myTimer != null){
+                myTimer.cancel();
+                myTimer.purge();
+                myTimer = null;
+            }
+
+            if(thread != null){
+                thread.interrupt();
+                thread = null;
+            }
+        }
+
     }
 
     @Override

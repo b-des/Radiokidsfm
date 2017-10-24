@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "fm.radiokids"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -66,7 +66,6 @@ dependencies {
     compile 'com.github.mukeshsolanki:Android-Shared-Preferences-TinyDB-:1.0.3'
     compile 'com.github.thunder413:DateTimeUtils:1.0'
     compile 'com.jakewharton:butterknife:6.1.0'
-    compile 'io.github.rockerhieu:emojiconize:1.0.0'
     //compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'

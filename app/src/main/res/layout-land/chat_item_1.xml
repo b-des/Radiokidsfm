@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/chat_item_bg"
     android:padding="5dp">
@@ -16,10 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingRight="20dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -34,7 +35,7 @@
                 android:gravity="center_vertical"
                 android:text=" вчера 21:32"
                 android:textAppearance="?android:attr/textAppearanceButton"
-                android:textColor="@color/ulogin_provider_diviter"
+                android:textColor="@color/grey"
                 android:textSize="10sp"
                 android:textStyle="italic" />
 
@@ -43,16 +44,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView"
-                android:textColor="@color/grey"
+                android:text="Автор"
+                android:textColor="@color/primary"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/message"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textColor="@color/colorText"
             android:textSize="12sp" />
     </LinearLayout>

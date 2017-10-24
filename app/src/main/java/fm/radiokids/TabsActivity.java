@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.brouding.simpledialog.SimpleDialog;
+import com.karan.churi.PermissionManager.PermissionManager;
 import com.mukesh.tinydb.TinyDB;
 
 import java.util.ArrayList;
@@ -40,12 +41,12 @@ import fm.radiokids.interfaces.FragmentCommunicator;
 
 
 public class TabsActivity extends AppCompatActivity implements VideoFragment.OnFragmentInteractionListener,
-ChatFragment.OnFragmentInteractionListener,
-UserFragment.OnFragmentInteractionListener,
-DetailsFragment.OnFragmentInteractionListener,
-LandChatFragment.OnFragmentInteractionListener,
-NewsFragment.OnFragmentInteractionListener,
-        FragmentCommunicator{
+        ChatFragment.OnFragmentInteractionListener,
+        UserFragment.OnFragmentInteractionListener,
+        DetailsFragment.OnFragmentInteractionListener,
+        LandChatFragment.OnFragmentInteractionListener,
+        NewsFragment.OnFragmentInteractionListener,
+        FragmentCommunicator {
 
     public final int REQUEST_LOGIN = 1;
 
@@ -66,31 +67,45 @@ NewsFragment.OnFragmentInteractionListener,
     Animation animationFadeOut;
 
     public ViewPagerAdapter adapter;
+    PermissionManager permission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
 
-
+        //setup permissions
+        permission = new PermissionManager() {};
+        permission.checkAndRequestPermissions(this);
 
         //config preferences
         preferences = new TinyDB(this);
+
+        //enable chate in landscape mode
+        if(!preferences.contains("chatIsEnabled")){
+            preferences.putBoolean("chatIsEnabled",true);
+        }
+
+        //setup tabs adn ViewPager
         viewPager = findViewById(R.id.viewpager);
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
-
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
+        //fragment for landscape chat
+        landChatFragment = new LandChatFragment();
         // Create new fragment and transaction
         //fragment for landscape chat
         landChatFragment = new LandChatFragment();
-
-
+        landChatTransaction = getSupportFragmentManager().beginTransaction();
+        landChatTransaction.add(R.id.chat_landscape, landChatFragment, "landscape-chat");
+        //landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        landChatTransaction.commit();
 
         chat = findViewById(R.id.chat_landscape);
+
         animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
 
         //check internet connection
@@ -146,7 +161,10 @@ NewsFragment.OnFragmentInteractionListener,
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        landChatTransaction = getSupportFragmentManager().beginTransaction();
+
+/*
+        Fragment lndChatF = getSupportFragmentManager().findFragmentByTag("landscape-chat");
+*/
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -162,17 +180,19 @@ NewsFragment.OnFragmentInteractionListener,
 
             //show chat if enabled
             //if(preferences.getBoolean("chatIsEnabled")){
-                chat.setVisibility(View.VISIBLE);
-                //smoothly hide chat after 5 seconds
-                //hideChat();
+            chat.setVisibility(View.VISIBLE);
+            //smoothly hide chat after 5 seconds
+            //hideChat();
             //}
 
             //show button shat switch
-           // btnSwitchChat.setVisibility(View.VISIBLE);
+            // btnSwitchChat.setVisibility(View.VISIBLE);
 
-            landChatTransaction.add(R.id.chat_landscape, landChatFragment,"landscape-chat");
-            landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-
+           /* if(lndChatF == null){
+                landChatTransaction.add(R.id.chat_landscape, landChatFragment, "landscape-chat");
+                landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                landChatTransaction.commit();
+            }*/
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
 
@@ -187,38 +207,42 @@ NewsFragment.OnFragmentInteractionListener,
 
             //hide chat
             //chat.setVisibility(View.INVISIBLE);
-            //chat.setVisibility(View.GONE);
+            chat.setVisibility(View.GONE);
 
 
             //remove landscape chat fragment
             //landChatTransaction.detach(landChatFragment);
-            landChatTransaction.remove(landChatFragment);
-            landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+           /* if(lndChatF instanceof LandChatFragment){
+                landChatTransaction.remove(landChatFragment);
+                landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                landChatTransaction.commit();
+            }*/
+
         }
 
-        landChatTransaction.commit();
+
     }
 
 
     public void setupTabIcons() {
-        View myCustomIcon ;
+        View myCustomIcon;
 
-        myCustomIcon =  getLayoutInflater().inflate(R.layout.custom_tab, null);
+        myCustomIcon = getLayoutInflater().inflate(R.layout.custom_tab, null);
         myCustomIcon.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_chat_logo);
         tabLayout.getTabAt(0).setCustomView(myCustomIcon);
 
 
-        myCustomIcon =  getLayoutInflater().inflate(R.layout.custom_tab, null);
+        myCustomIcon = getLayoutInflater().inflate(R.layout.custom_tab, null);
         myCustomIcon.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_news_logo);
         tabLayout.getTabAt(1).setCustomView(myCustomIcon);
 
 
-        myCustomIcon =  getLayoutInflater().inflate(R.layout.custom_tab, null);
+        myCustomIcon = getLayoutInflater().inflate(R.layout.custom_tab, null);
         myCustomIcon.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_user_logo);
         tabLayout.getTabAt(2).setCustomView(myCustomIcon);
 
 
-        myCustomIcon =  getLayoutInflater().inflate(R.layout.custom_tab, null);
+        myCustomIcon = getLayoutInflater().inflate(R.layout.custom_tab, null);
         myCustomIcon.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_menu_logo);
         tabLayout.getTabAt(3).setCustomView(myCustomIcon);
 
@@ -234,14 +258,12 @@ NewsFragment.OnFragmentInteractionListener,
         adapter.addFragment(new UserFragment(), "");
         adapter.addFragment(new DetailsFragment(), "");
         viewPager.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
-
 
 
     @Override
     public void updateChat() {
-        ViewPagerAdapter adapter = ((ViewPagerAdapter)viewPager.getAdapter());
+        ViewPagerAdapter adapter = ((ViewPagerAdapter) viewPager.getAdapter());
         ChatFragment fragment = (ChatFragment) adapter.getItem(0);
         fragment.updateChat();
 
@@ -253,7 +275,12 @@ NewsFragment.OnFragmentInteractionListener,
 
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        permission.checkResult(requestCode,permissions, grantResults);
+    }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -275,6 +302,7 @@ NewsFragment.OnFragmentInteractionListener,
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
+
         @Override
         public int getItemPosition(Object object) {
             // POSITION_NONE makes it possible to reload the PagerAdapter

@@ -190,13 +190,14 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
-        } else if (requestCode == REQUEST_ULOGIN) {
+
+        }
+        else if (requestCode == REQUEST_ULOGIN ) {
             HashMap userdata = (HashMap) data.getSerializableExtra(UloginAuthActivity.USERDATA);
 
             switch (resultCode) {
                 case RESULT_OK:
                     //если авторизация прошла успешно, то приветствуем пользователя
-                    //TODO: check social login
                     JSONObject jo = new JSONObject(userdata);
                     String login = "";
                     String name = "";

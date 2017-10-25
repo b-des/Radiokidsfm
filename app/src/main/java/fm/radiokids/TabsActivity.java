@@ -103,7 +103,6 @@ public class TabsActivity extends AppCompatActivity implements VideoFragment.OnF
         landChatTransaction.add(R.id.chat_landscape, landChatFragment, "landscape-chat");
         //landChatTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         landChatTransaction.commit();
-
         chat = findViewById(R.id.chat_landscape);
 
         animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
@@ -186,6 +185,7 @@ public class TabsActivity extends AppCompatActivity implements VideoFragment.OnF
             //}
 
             //show button shat switch
+
             // btnSwitchChat.setVisibility(View.VISIBLE);
 
            /* if(lndChatF == null){

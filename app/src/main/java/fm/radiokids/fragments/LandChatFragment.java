@@ -243,7 +243,6 @@ public class LandChatFragment extends Fragment {
 
         myTimer = new Timer();
         final Handler uiHandler = new Handler();
-
         myTimer.schedule(new TimerTask() { // Определяем задачу
             @Override
             public void run() {
@@ -256,6 +255,7 @@ public class LandChatFragment extends Fragment {
                             App.getApi().getMessages(activity.preferences.getLong("lastCheck", 0)).enqueue(new Callback<List<ChatModel>>() {
                                 @Override
                                 public void onResponse(Call<List<ChatModel>> call, Response<List<ChatModel>> response) {
+                                    Toast.makeText(activity,"Make request",Toast.LENGTH_SHORT).show();
                                     if (response.body().size() != 0) {
 
                                         if (activity.preferences.getBoolean("chatIsEnabled")) {
@@ -292,7 +292,7 @@ public class LandChatFragment extends Fragment {
                     }
                 });
             }
-        }, 0L, 1L * 1000);
+        }, 0L, 3L * 1000);
     }
 
 
@@ -303,6 +303,7 @@ public class LandChatFragment extends Fragment {
             loadLastMessages();
             setUpChatUpdate();
             chatList.setVisibility(View.VISIBLE);
+            setUpChatUpdate();
             hideChat();
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
@@ -310,15 +311,19 @@ public class LandChatFragment extends Fragment {
                 myTimer.cancel();
                 myTimer.purge();
                 myTimer = null;
+
             }
 
             if(thread != null){
                 thread.interrupt();
                 thread = null;
             }
+
         }
 
     }
+
+
 
     @Override
     public void onAttach(Context context) {

@@ -124,10 +124,15 @@ public class TabsActivity extends AppCompatActivity implements VideoFragment.OnF
         super.onStart();
         // Create new fragment and transaction
         //video fragment
-        videoFragment = new VideoFragment();
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.videoFrame, videoFragment);
-        transaction.commit();
+        if (android.os.Build.VERSION.SDK_INT > 15){
+            videoFragment = new VideoFragment();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.videoFrame, videoFragment);
+            transaction.commit();
+        }else{
+            Toast.makeText(TabsActivity.this,getString(R.string.text_not_available_stream),Toast.LENGTH_LONG).show();
+         }
+
     }
 
 

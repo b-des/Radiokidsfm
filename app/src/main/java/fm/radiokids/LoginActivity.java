@@ -224,8 +224,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
-                            //Toast.makeText(LoginActivity.this, getString(R.string.text_error_network), Toast.LENGTH_LONG).show();
-                            Toast.makeText(LoginActivity.this, "LOL", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.text_error_network), Toast.LENGTH_LONG).show();
                         }
                     });
                     break;

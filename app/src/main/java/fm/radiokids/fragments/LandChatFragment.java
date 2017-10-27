@@ -211,7 +211,7 @@ public class LandChatFragment extends Fragment {
                     //Thread.currentThread().interrupt();
                     //if (!Thread.currentThread().isInterrupted()) {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(10000);
                         if (!Thread.currentThread().isInterrupted()) {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -252,10 +252,10 @@ public class LandChatFragment extends Fragment {
                     public void run() {
                         if (!inProcessCheckMessage) {
                             inProcessCheckMessage = true;
-                            App.getApi().getMessages(activity.preferences.getLong("lastCheck", 0)).enqueue(new Callback<List<ChatModel>>() {
+                            App.getApi().getMessages(activity.preferences.getLong("lastCheckLandMessages", 0)).enqueue(new Callback<List<ChatModel>>() {
                                 @Override
                                 public void onResponse(Call<List<ChatModel>> call, Response<List<ChatModel>> response) {
-                                    Toast.makeText(activity,"Make request",Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(activity,"Make request",Toast.LENGTH_SHORT).show();
                                     if (response.body().size() != 0) {
 
                                         if (activity.preferences.getBoolean("chatIsEnabled")) {
@@ -268,7 +268,7 @@ public class LandChatFragment extends Fragment {
                                         chatList.setSelection(adapter.getCount() - 1);
                                         //activity.preferences.putLong("lastCheck", System.currentTimeMillis() / 1000);
                                         ChatModel message = response.body().get(response.body().size() - 1);
-                                        activity.preferences.putLong("lastCheck", Long.valueOf(message.geTime()));
+                                        activity.preferences.putLong("lastCheckLandMessages", Long.valueOf(message.geTime()));
 
                                         //Toast.makeText(activity,"has msg",Toast.LENGTH_LONG).show();
                                         //if chat is visible
@@ -292,7 +292,7 @@ public class LandChatFragment extends Fragment {
                     }
                 });
             }
-        }, 0L, 3L * 1000);
+        }, 0L, 2L * 1000);
     }
 
 
@@ -302,16 +302,17 @@ public class LandChatFragment extends Fragment {
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             loadLastMessages();
             setUpChatUpdate();
-            chatList.setVisibility(View.VISIBLE);
-            setUpChatUpdate();
-            hideChat();
+            if(activity.preferences.getBoolean("chatIsEnabled")){
+                chatList.setVisibility(View.VISIBLE);
+                hideChat();
+            }
+
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             if(myTimer != null){
                 myTimer.cancel();
                 myTimer.purge();
                 myTimer = null;
-
             }
 
             if(thread != null){

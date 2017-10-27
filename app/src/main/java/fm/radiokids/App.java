@@ -25,7 +25,7 @@ public class App extends Application {
         super.onCreate();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://prj2.b-des.xyz/")
+                .baseUrl("http://radiokids.fm/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         radioKidsApi = retrofit.create(RadioKidsApi.class);

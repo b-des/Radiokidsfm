@@ -76,6 +76,9 @@ public class SignupActivity extends AppCompatActivity {
                     case "exist":
                         Toast.makeText(SignupActivity.this, getString(R.string.text_user_exist), Toast.LENGTH_LONG).show();
                         break;
+                    case "wrong login":
+                        Toast.makeText(SignupActivity.this, getString(R.string.text_only_latin_character), Toast.LENGTH_LONG).show();
+                        break;
                     case "error":
                         Toast.makeText(SignupActivity.this, getString(R.string.text_create_account_error), Toast.LENGTH_LONG).show();
                         break;

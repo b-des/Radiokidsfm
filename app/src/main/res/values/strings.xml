@@ -28,7 +28,7 @@
     <string name="text_today">Сегодня, </string>
     <string name="text_yesterday">Вчера, </string>
     <string name="text_second">секунд </string>
-    <string name="text_error_authorize">Невозможно авторизироватся</string>
+    <string name="text_error_authorize">Невозможно авторизироватся! Пожалуйста, воспользуйтесь другой соц. сетью</string>
     <string name="text_process_authorize">Авторизация…</string>
     <string name="text_process_create_account">Создание аккаунта…</string>
     <string name="text_error_network">Ошибка сети. Проверьте подключение к интернету!</string>
@@ -62,6 +62,7 @@
     <string name="text_fill_in_field">Заполните это поле</string>
     <string name="text_user_exist">Пользователь уже существует</string>
     <string name="text_create_account_error">Ошибка при регистрации. Попробуйте ещё раз.</string>
+    <string name="text_only_latin_character">Логин должен содержать только латинские символы.</string>
     <string name="text_skype_dismiss">У Вас отсутствует Skype</string>
     <string name="text_chat_is_disabled">Чат отключен</string>
     <string name="text_chat_is_enabled">Чат включен</string>
@@ -71,6 +72,7 @@
     <string name="text_instagram">Instagram</string>
     <string name="text_vk">ВКонтакте</string>
     <string name="text_ok">Одноклассники</string>
+    <string name="text_not_available_stream">Ваше устройство не поддерживает просмотр онлайн-видео</string>
     <string name="text_permission_denied">Вы должны разрешить чтение информации о телефоне, чтобы авторизироватся через соц. сети!</string>
 
     <string name="link_youtube">https://www.youtube.com/channel/UCYhyHb9tmpYwzeYFSu3Ty0Q</string>
@@ -97,6 +99,7 @@
 <p>Тел: +7 (495) 118-29-80</p>
 <p>E-mail: info@radiokids.fm</p>
 <p><a href="www.radiokids.fm">www.radiokids.fm</a></p>
+<p>Разработка: <a href="http://app154.ru/">app154.ru</p>
 ]]></string>
 
     <!-- TODO: Remove or change this placeholder text -->

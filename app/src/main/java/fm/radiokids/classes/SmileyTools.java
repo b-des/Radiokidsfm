@@ -2,14 +2,17 @@ package fm.radiokids.classes;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -80,7 +83,8 @@ public class SmileyTools {
     public static void showSmileyChoosePopup(final Activity activity, final Context context, final LayoutInflater ltInflater, final View layout) {
 
 
-        View view = ltInflater.inflate(R.layout.smile_layout_dialog, null, false);
+        View view = ltInflater.inflate(R.layout.smile_layout_dialog, null, true);
+        Log.d("SMILE",view.toString());
         smiley_grid = view.findViewById(R.id.smiley_grid);
         gridAdapter = new GridViewAdapter(activity, R.layout.grid_item_layout, getData(activity));
         smiley_grid.setNumColumns(5);
@@ -98,17 +102,25 @@ public class SmileyTools {
         });
 
 
-        new SimpleDialog.Builder(context)
+        Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
+        // Передайте ссылку на разметку
+        dialog.setContentView(view);
+        // Найдите элемент TextView внутри вашей разметки
+        // и установите ему соответствующий текст
+       dialog.show();
+
+       /* new SimpleDialog.Builder(context)
                 //.setTitle("This is Title :)")
                 // If the customView is long enough, SimpleDialog will put your layout in the ScrollView automatically
-                .setCustomView(view)
+                .setCustomView(R.layout.smile_layout_dialog)
                 .setBtnConfirmText(context.getString(R.string.text_close))
                 .setCancelableOnTouchOutside(true)
                 // .setBtnConfirmTextSizeDp(16)
                 // .setBtnConfirmTextColor("#1fd1ab")
                 //.setBtnCancelText("Cancel", false)
                 //.setBtnCancelTextColor("#555555")
-                .show();
+                .show();*/
     }
 
     // Prepare some dummy data for gridview
